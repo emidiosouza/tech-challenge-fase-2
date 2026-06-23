@@ -87,9 +87,13 @@ Entrega final: 14/07.
 │   ├── artifacts/                     modelo baseline calibrado e saídas do AG
 │   ├── figures/                       gráficos de convergência dos experimentos
 │   └── metrics/                       métricas baseline e dos experimentos AG
-├── src/
-│   └── utils/
-│       └── experiment_utils.py    helpers de modelagem sklearn (apply_scenario, etc.)
+├── src/                           pacote Python instalável (raiz: src/, via pyproject.toml)
+│   └── utils/                     subpacote `utils` — importável nos notebooks sem sys.path
+│       ├── __init__.py
+│       └── experiment_utils.py    helpers de modelagem sklearn + I/O de notebooks
+├── docs/
+│   ├── pipeline_plan.md           plano do pipeline de produção (treino + inferência)
+│   └── issues_sprint.md           organização das issues para Emídio e Caê
 └── pyproject.toml
 ```
 

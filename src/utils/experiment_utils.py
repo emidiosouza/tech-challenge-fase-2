@@ -1,10 +1,11 @@
-"""Simple scenario-based sklearn pipeline for the modeling workflow."""
+"""Sklearn pipeline helpers and notebook I/O utilities for the modeling workflow."""
 
 from __future__ import annotations
 
 import argparse
 import csv
 import json
+import os
 from pathlib import Path
 from typing import Any
 
@@ -420,6 +421,29 @@ def write_json(payload: dict[str, Any], output_path: Path) -> None:
 def write_comparison_csv(rows: list[dict[str, Any]], output_path: Path) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     pd.DataFrame(rows).to_csv(output_path, index=False)
+
+
+def save_if_different(new_df: pd.DataFrame, file_path: Path | str) -> None:
+    file_path = Path(file_path)
+    if not file_path.exists():
+        new_df.to_parquet(file_path, index=False)
+        print("Arquivo salvo com sucesso")
+        return
+    if new_df.equals(pd.read_parquet(file_path)):
+        print("Arquivo em sua última versão!")
+    else:
+        new_df.to_parquet(file_path, index=False)
+        print("Arquivo atualizado com sucesso")
+
+
+def load_parquet_safe(file_path: Path | str, notebook_origem: str) -> pd.DataFrame:
+    file_path = Path(file_path)
+    if not file_path.exists():
+        raise FileNotFoundError(
+            f"Arquivo '{file_path}' não encontrado. "
+            f"Execute o notebook '{notebook_origem}' antes de continuar."
+        )
+    return pd.read_parquet(file_path)
 
 
 def main() -> None:
