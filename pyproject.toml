@@ -13,6 +13,7 @@ dependencies = [
     "numpy>=1.26",
     "pandas>=2.0",
     "plotly>=6.6.0",
+    "pyarrow>=24.0.0",
     "python-lsp-server>=1.14.0",
     "scikit-learn>=1.4",
     "seaborn>=0.13",
@@ -23,8 +24,8 @@ dependencies = [
 requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools]
-py-modules = ["pipeline"]
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.setuptools.package-dir]
 "" = "src"
