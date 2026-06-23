@@ -88,7 +88,8 @@ Entrega final: 14/07.
 │   ├── figures/                       gráficos de convergência dos experimentos
 │   └── metrics/                       métricas baseline e dos experimentos AG
 ├── src/
-│   └── pipeline.py                módulo `pipeline` (apply_scenario, etc.)
+│   └── utils/
+│       └── experiment_utils.py    helpers de modelagem sklearn (apply_scenario, etc.)
 └── pyproject.toml
 ```
 
@@ -96,7 +97,26 @@ Entrega final: 14/07.
 
 ```bash
 uv sync
+uv run jupyter lab
 ```
+
+### Configuração do nbstripout (obrigatório)
+
+O projeto usa [nbstripout](https://github.com/kynan/nbstripout) para evitar que outputs e metadados dos notebooks sejam commitados. **Todos os membros do time precisam rodar este comando uma vez após clonar o repositório:**
+
+```bash
+uv run nbstripout --install --attributes .gitattributes
+```
+
+Isso registra o filtro do Git localmente. O arquivo `.gitattributes` já está no repositório com as regras:
+
+```gitattributes
+*.ipynb filter=nbstripout
+*.zpln filter=nbstripout
+*.ipynb diff=ipynb
+```
+
+Verifique se está ativo com `uv run nbstripout --status`.
 
 ## Insumos importados da Fase 1
 
