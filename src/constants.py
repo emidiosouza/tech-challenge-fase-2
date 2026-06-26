@@ -64,16 +64,9 @@ NUMERIC_COLUMNS: list[str] = [
     "LONGITUDE",
 ]
 
-CATEGORICAL_COLUMNS: list[str] = [
-    "ESCMAE2010",
-    "KOTELCHUCK",
-]
-
 PASSTHROUGH_COLUMNS: list[str] = [
     "PAI_AUSENTE",
 ]
-
-FAIXAETAMAE_COLUMN: str = "FAIXAETAMAE"
 
 SENTINEL_REPLACEMENTS: dict[str, tuple[object, object]] = {
     MESPRENAT_COLUMN: (99, np.nan),
@@ -94,27 +87,6 @@ SEMAGESTAC_MAX: int = 45
 
 VALID_ESCMAE2010_VALUES: set[int | float] = {0, 1, 2, 3, 4, 5}
 VALID_KOTELCHUCK_VALUES: set[str] = {"1", "2", "3", "4", "5"}
-
-FAIXAETAMAE_BINS_LABELS: dict[int, str] = {
-    10: "10-19",
-    20: "20-24",
-    25: "25-29",
-    30: "30-34",
-    35: "35-39",
-    40: "40+",
-}
-
-PNTARDIO_COLUMN: str = "PNTARDIO"
-HISTPERDAFETAL_COLUMN: str = "HISTPERDAFETAL"
-PRIMIPARA_COLUMN: str = "PRIMIPARA"
-
-DERIVED_FLAG_COLUMNS: list[str] = [
-    PNTARDIO_COLUMN,
-    HISTPERDAFETAL_COLUMN,
-    PRIMIPARA_COLUMN,
-]
-
-DERIVED_CATEGORICAL_COLUMNS: list[str] = [FAIXAETAMAE_COLUMN]
 
 KOTELCHUCK_MAP: dict[str, int | None] = {
     "1": 1,
@@ -137,11 +109,6 @@ ESCMAE2010_MAP: dict[float, int | None] = {
 
 ESCMAE2010_ORDINAL_COLUMN: str = "ESCMAE2010_ORDINAL"
 KOTELCHUCK_ORDINAL_COLUMN: str = "KOTELCHUCK_ORDINAL"
-
-ORDINAL_COLUMNS: list[str] = [
-    ESCMAE2010_ORDINAL_COLUMN,
-    KOTELCHUCK_ORDINAL_COLUMN,
-]
 
 COUNT_COLUMNS: list[str] = [
     "QTDGESTANT",
